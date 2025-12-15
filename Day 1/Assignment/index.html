@@ -8,7 +8,7 @@
 <body>
 
   <!-- ================= HEADER ================= -->
-  <header id="header">
+  <header id="Habit Tracker">
     <!-- TASK 1:
          Add the main title of the website: "Habit Tracker"
          Use a heading tag -->
@@ -20,6 +20,13 @@
          - Habits
          - Stats
          Use nav, ul, li and a tags -->
+    <nav>
+          <ul>
+               <li><a href="">Home</a></li>
+               <li><a href="">Habits</a></li>
+               <li><a href="">Stats</a></li>
+          </ul>
+     </nav>
   </header>
 
   <!-- ================= MAIN CONTENT ================= -->
@@ -29,30 +36,57 @@
     <section id="add-habit-section">
       <!-- TASK 3:
            Add a heading: "Add New Habit" -->
-
+      <h1>Add New Habit</h1>
       <!-- TASK 4:
            Create a form with:
            - Text input for Habit Name
            - Dropdown for Frequency (Daily, Weekly)
            - Button with text "Add Habit"
            Use form, label, input, select, option, button -->
+           <form>
+               <label>Habit Name</label>
+               <input type="text"><br><br>
+               <label>Frequency</label>
+                    <select>
+                 <option>Daily</option>
+                 <option>Weekly</option>
+               </select><br><br>
+               <button type="button">Add Habit</button>
+          </form>
     </section>
 
     <!-- ========== HABIT LIST SECTION ========== -->
     <section id="habit-list-section">
       <!-- TASK 5:
            Add a heading: "Your Habits" -->
-
+      <h2>Your Habits</h2>
       <!-- TASK 6:
            Create ONE habit card with:
            - Habit name (example: Read 20 minutes)
            - Text: Current Streak: 3 days
            - Button: Mark as Done
            Use a container tag -->
+        <div class="Habit Card">
+          <h3>Read 20 Minutes</h3>
+          <p>Current Streak: 3 Days</p>
+          <button>Mark As Done</button>
+        </div>
 
       <!-- TASK 7:
            Copy the habit card and create TWO more habits
            Change the habit name and streak values -->
+        <div class="Habit Card">
+          <h3>Jogging 20 Minutes</h3>
+          <p>Current Streak: 11 Days</p>
+          <button>Mark As Done</button>
+        </div>
+
+        <div class="Habit Card">
+          <h3>Do Leet Code 30 Minutes</h3>
+          <p>Current Streak: 5 Days</p>
+          <button>Mark As Done</button>
+        </div>
+
     </section>
 
     <!-- ========== STATS SECTION ========== -->
@@ -63,6 +97,12 @@
            - Total Habits: 3
            - Completed Today: 1
            - Best Streak: 7 days -->
+          <h2>Your Progress</h2>
+          <p>
+           - Total Habits: 3<br>
+           - Completed Today: 1<br>
+           - Best Streak: 7 days<br>
+          </p>
     </section>
 
   </main>
@@ -73,6 +113,8 @@
          Add footer text:
          - Habit Tracker Project
          - Built during Web Development Bootcamp -->
+    Habit Tracker<br>
+    Built during Web Development Bootcamp
   </footer>
 
 </body>
