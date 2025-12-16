@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header id="Habit Tracker">
+    <nav class="navbar">
+          <ul class="nav-list">
+               <li><a href="">Home</a></li>
+               <li><a href="">Habits</a></li>
+               <li><a href="">Stats</a></li>
+          </ul>
+     </nav>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+
+    <!-- ========== ADD HABIT SECTION ========== -->
+    <section id="add-habit-section">
+      
+      <h1 id="heading">Add New Habit</h1>
+      
+           <form>
+               <label>Habit Name: </label>
+               <input type="text" placeholder="Habit Name">
+               <label>Frequency</label>
+                    <select>
+                 <option>Daily</option>
+                 <option>Weekly</option>
+               </select>
+               <button type="button">Add Habit</button>
+          </form>
+    </section>
+
+    <!-- ========== HABIT LIST SECTION ========== -->
+    <section id="habit-list-section">
+      <h2>Your Habits</h2>
+      <div id="boxes">
+        <div class="Habit-Card">
+          <h3>Read 20 Minutes</h3>
+          <p>Current Streak: 3 Days</p>
+          <button>Mark As Done</button>
+        </div>
+
+        <div class="Habit-Card">
+          <h3>Jogging 20 Minutes</h3>
+          <p>Current Streak: 11 Days</p>
+          <button>Mark As Done</button>
+        </div>
+
+        <div class="Habit-Card">
+          <h3>Do Leet Code 30 Minutes</h3>
+          <p>Current Streak: 5 Days</p>
+          <button>Mark As Done</button>
+        </div>
+       </div>
+
+    </section>
+
+    <!-- ========== STATS SECTION ========== -->
+    <section id="stats">
+
+          <h2>Your Progress</h2>
+          <div class="stat-grid">
+           <p>Total Habits: 3</p>
+           <p>Completed Today: 1</p>
+           <p>Best Streak: 7 days</p>
+        </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="footer">
+   
+    Habit Tracker<br>
+    Built during Web Development Bootcamp
+  </footer>
+
+</body>
+</html>

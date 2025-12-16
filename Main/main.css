@@ -1,0 +1,210 @@
+/* ==========Experminetal============ */
+
+/* FOR FIREFOX */
+/* This controls the width and colors */
+/* Format: thumb-color track-color */
+html {
+    scrollbar-width: thin; 
+    scrollbar-color: #1ABC9C #2C3E50; 
+}
+
+/* FOR CHROME, EDGE, & SAFARI */
+
+/* 1. The Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* 2. The Track (The background/rail) */
+::-webkit-scrollbar-track {
+    background: #2C3E50; /* Charcoal (Matches your sidebar) */
+}
+
+/* 3. The Thumb (The moving part you drag) */
+::-webkit-scrollbar-thumb {
+    background-color: #1ABC9C; /* Teal */
+    border-radius: 6px;       /* Makes it round like a pill */
+    border: 3px solid #2C3E50; /* Creates a padding effect around the thumb */
+}
+
+/* 4. Hover Effect (When you grab it) */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #16a085; /* Darker Teal */
+}
+
+/* ========== MAIN STYLESHEET ========== */
+body{
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin:0;
+    background-color: #f4f6f8;
+    color: #333;
+    padding: 0px;
+    left: 0
+}
+
+/* ===== Navbar ====== */
+
+.navbar{
+    margin-left: -30px;  
+}
+
+.navbar a{
+    background-color: #2C3E50;
+    display: block;
+    border-left: 5px solid transparent;
+    text-decoration: none;
+    font-size: 18px;
+    color: #ecf0f1;
+    margin: 1px 1px; 
+    border-radius: 10px;
+    text-align: center;
+}
+
+.navbar a:hover{
+    background-color: #34495E;
+    color: #1ABC9C;
+    border-left: 5px solid #27AE60;
+    border-right: 5px solid #27AE60;
+}
+
+ul.nav-list {
+    list-style-type: none;
+}
+
+#heading{
+    color: #2C3E50;
+    font-size: 28px;
+}
+
+/* ======= ADD HABIT SECTION =====  */
+
+#add-habit-section{
+    padding: 20px;
+    margin: auto;
+}
+
+#add-habit-section button{
+    background-color: transparent;
+    color: #1ABC9C;               
+    border: 2px solid #1ABC9C;
+    padding: 8px 16px;
+    border-radius: 20px;   
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* ======= HABIT LIST SECTION (Form) ======  */
+
+
+
+#habit-list-section h2{
+    margin-left: 20px;
+    color: #34495e;
+}
+
+#add-habit-section  form{
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;       /* Smooth corners */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Soft, expensive-looking shadow */
+    max-width: 515px;          /* Stops it from stretching too wide */
+    margin-bottom: 40px;       /* Space below the form */
+    border-top: 5px solid #2C3E50; /* Charcoal accent bar on top */
+}
+
+#add-habit-section label {
+    display: block;            /* Puts label on its own line */
+    margin-bottom: 8px;        /* Space between label and box */
+    font-weight: bold;
+    color: #2C3E50;            /* Charcoal text */
+    font-size: 14px;
+    text-transform: uppercase; /* Makes it look like a pro app */
+    letter-spacing: 1px;
+}
+
+#add-habit-section input, 
+#add-habit-section select {
+    width: 100%;               /* Fills the container */
+    padding: 12px 15px;        /* nice big click area */
+    margin-bottom: 20px;       /* Space between fields */
+    border: 2px solid #e0e0e0; /* Light grey border */
+    border-radius: 8px;        /* Rounded corners */
+    font-size: 16px;
+    background-color: #fafafa; /* Very light grey background */
+    transition: 0.3s;          /* Smooth animation */
+    box-sizing: border-box;    /* Prevents padding from breaking layout */
+}
+/*=============>This complete section is gemini<============== */
+#add-habit-section input:focus, 
+#add-habit-section select:focus {
+    outline: none;             /* Removes the ugly default blue outline */
+    border-color: #1ABC9C;     /* Border turns TEAL */
+    background-color: white;   /* Background turns pure white */
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.3); /* Slight teal glow */
+}/*=============>This complete section is gemini<============== */
+
+#add-habit-section button:hover {
+    background-color: #F1C40F; /* Turns Teal on hover */
+}
+
+/* =======Stats grid======= */
+
+.Habit-Card{
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 500px;
+    text-align: center;
+}
+
+.Habit-Card button{
+    background-color: transparent;
+    color: #1ABC9C;               
+    border: 2px solid #1ABC9C;
+    padding: 8px 16px;
+    border-radius: 20px;   
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#stats{
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#boxes{
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.stat-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.stat-grid p{
+   background-color: white;
+   padding: 15px;
+   text-align: center;
+   border-radius: 6px;
+   padding: 20px;
+}
+
+/* ======= Footer ====== */
+
+#footer{
+    text-align: center;
+    padding: 20px;
+    background-color: #2C3E50;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: auto;
+}
