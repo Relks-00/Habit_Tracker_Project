@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITHILA | Infinite Glass</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --glass-surface: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-blur: 24px;
+            --text-dark: #1a1a1a;
+            --accent: #C04000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            background: radial-gradient(circle at top left, #FDEFEF, #E8F0F2, #F4F4F8);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- UTILS --- */
+        .glass {
+            background: var(--glass-surface);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+
+        /* --- NAV --- */
+        nav {
+            position: fixed;
+            top: 20px; left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo { font-family: 'Playfair Display'; font-weight: 600; font-size: 1.5rem; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; text-decoration: none; color: var(--text-dark); }
+        
+        /* --- HERO --- */
+        .hero {
+            height: 90vh; /* Slightly shorter to show gallery peek */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 5%;
+        }
+
+        .hero-card {
+            padding: 4rem;
+            border-radius: 40px;
+            text-align: center;
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1rem; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.8; }
+        .btn { padding: 1rem 2.5rem; background: var(--text-dark); color: #fff; border-radius: 30px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.05); }
+
+        .floater { position: absolute; z-index: 1; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); object-fit: cover; opacity: 0.9; }
+        .f1 { top: 15%; left: 8%; width: 220px; height: 300px; transform: rotate(-8deg); }
+        .f2 { bottom: 15%; right: 8%; width: 280px; height: 380px; transform: rotate(8deg); }
+
+        /* --- INFINITE GALLERY --- */
+        .gallery-section {
+            padding: 5rem 0;
+            overflow: hidden; /* Critical for hiding the 'magic' */
+        }
+
+        .section-header { padding: 0 5%; margin-bottom: 3rem; }
+        .section-header h2 { font-family: 'Playfair Display'; font-size: 3rem; }
+
+        /* The Window we look through */
+        .carousel-window {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* The Moving Train */
+        .carousel-track {
+            display: flex;
+            gap: 2.5rem;
+            padding: 2rem 5%;
+            width: max-content; /* Allows track to be very long */
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); /* Fluid ease */
+        }
+
+        .product-card {
+            min-width: 350px;
+            height: 550px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            padding: 1.2rem;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        /* Interactive: Pause scaling on hover */
+        .product-card:hover { transform: scale(1.02); }
+
+        .p-img { width: 100%; height: 80%; object-fit: cover; border-radius: 20px; margin-bottom: 1.2rem; }
+        .p-details { padding: 0 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .p-name { font-family: 'Playfair Display'; font-size: 1.5rem; font-weight: 500; }
+        .p-price { color: var(--accent); font-weight: 600; font-size: 1.1rem; }
+
+        /* --- FOOTER --- */
+        footer { margin-top: 5rem; padding: 6rem 5% 3rem 5%; border-top: 1px solid rgba(0,0,0,0.05); background: linear-gradient(to top, #fff, rgba(255,255,255,0)); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-brand h4 { font-family: 'Playfair Display'; font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .footer-col h5 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 1rem; color: #555; cursor: pointer; }
+        .footer-col li:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; font-size: 0.85rem; color: #999; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); }
+
+        @media (max-width: 768px) {
+            .f1, .f2 { display: none; }
+            .hero-card { padding: 2rem; width: 95%; }
+            .product-card { min-width: 300px; height: 450px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="glass">
+        <div class="logo">MITHILA.</div>
+        <div class="nav-links">
+            <a href="#">Collection</a>
+            <a href="#">Artists</a>
+            <a href="#">Cart (0)</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1582560475093-6f498aa97846?q=80&w=2070" class="floater f1" alt="Art">
+        <img src="https://images.unsplash.com/photo-1629196914375-f7e48f477b6d?q=80&w=1974" class="floater f2" alt="Art">
+        <div class="hero-card glass">
+            <h1>Transparency &<br>Tradition</h1>
+            <p>Authentic Mithila paintings displayed in a modern crystal gallery.</p>
+            <button class="btn">Explore Gallery</button>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="section-header">
+            <h2>The Collection</h2>
+            <p style="color: #666;">Auto-scrolling Gallery</p>
+        </div>
+
+        <div class="carousel-window">
+            <div class="carousel-track" id="track">
+                
+                <div class="product-card glass">
+                    <img src="https://images.unsplash.com/photo-1605490480376-7844a631d8ce?q=80&w=2070" class="p-img" alt="Mithila Art">
+                    <div class="p-details"><div class="p-name">Forest Wedding</div><div class="p-price">$220</div></div>
+                </div>
+
+                <div class="product-card glass">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb39279c23?q=80&w=2070" class="p-img" alt="Mithila Art">
+                    <div class="p-details"><div class="p-name">The Sun God</div><div class="p-price">$180</div></div>
+                </div>
+
+                <div class="product-card glass">
+                    <img src="https://images.unsplash.com/photo-1549887552-93f2756bc953?q=80&w=2000" class="p-img" alt="Mithila Art">
+                    <div class="p-details"><div class="p-name">Lotus Pond</div><div class="p-price">$150</div></div>
+                </div>
+
+                <div class="product-card glass">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=2000" class="p-img" alt="Mithila Art">
+                    <div class="p-details"><div class="p-name">Peacock Dance</div><div class="p-price">$290</div></div>
+                </div>
+
+                <div class="product-card glass">
+                    <img src="https://images.unsplash.com/photo-1628744876497-eb30460be9f6?q=80&w=2000" class="p-img" alt="Mithila Art">
+                    <div class="p-details"><div class="p-name">Village Life</div><div class="p-price">$210</div></div>
+                </div>
+                
+                </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h4>Mithila.</h4>
+                <p>Bringing the ancient geometry of Bihar to the walls of the modern world.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Shop</h5>
+                <ul><li>All Paintings</li><li>Limited Edition</li><li>Gift Cards</li></ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul><li>Shipping & Returns</li><li>Contact Us</li><li>Privacy Policy</li></ul>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2025 Mithila Art Store. Designed with transparency.</div>
+    </footer>
+
+    <script>
+        const track = document.getElementById('track');
+        const cards = Array.from(track.children);
+        const cardWidth = 350; // Card width defined in CSS
+        const gap = 40; // 2.5rem gap defined in CSS (~40px)
+        const totalCardWidth = cardWidth + gap;
+        
+        // 1. Clone cards to create the illusion of infinity
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', true); // Accessibility
+            track.appendChild(clone);
+        });
+
+        let currentIndex = 0;
+        let isTransitioning = true;
+
+        function moveCarousel() {
+            // Move to next slide
+            currentIndex++;
+            track.style.transition = 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)';
+            track.style.transform = `translateX(-${currentIndex * totalCardWidth}px)`;
+
+            // Check if we reached the end of the original set (Index 5)
+            // If we have 5 original cards, when we hit index 5, we are looking at the 1st clone.
+            if (currentIndex >= cards.length) {
+                setTimeout(() => {
+                    // Temporarily turn off animation
+                    track.style.transition = 'none';
+                    // Reset index to 0 (the actual first card)
+                    currentIndex = 0;
+                    // Move track back to start instantly
+                    track.style.transform = `translateX(0px)`;
+                }, 700); // Wait for the transition to finish (0.7s) before resetting
+            }
+        }
+
+        // Start the loop
+        let autoScroll = setInterval(moveCarousel, 3000); // Speed: 3 seconds per slide
+
+        // Optional: Pause on hover
+        track.addEventListener('mouseenter', () => clearInterval(autoScroll));
+        track.addEventListener('mouseleave', () => autoScroll = setInterval(moveCarousel, 3000));
+
+    </script>
+</body>
+</html>
