@@ -107,6 +107,18 @@ ul.nav-list {
 /* ======= HABIT LIST SECTION (Form) ======  */
 
 
+/* ---------- Fade-in animation ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 #habit-list-section h2{
     margin-left: 20px;
