@@ -85,5 +85,24 @@
     Built during Web Development Bootcamp
   </footer>
 
+  <script> 
+    const buttons = document.querySelectorAll(".habit-card button");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.parentElement;
+
+      // Toggle completed state
+      card.classList.toggle("completed");
+
+      // Change button text
+      if (btn.innerText === "Done") {
+        btn.innerText = "Completed ✓";
+      } else {
+        btn.innerText = "Done";
+      }
+    });
+  });
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MITHILA | Infinite Glass</title>
+    <title>MITHILA | Butter Smooth</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* --- UTILS --- */
+        /* --- GLASS --- */
         .glass {
             background: var(--glass-surface);
             backdrop-filter: blur(var(--glass-blur));
@@ -36,41 +36,17 @@
 
         /* --- NAV --- */
         nav {
-            position: fixed;
-            top: 20px; left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; padding: 1rem 2rem; border-radius: 50px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
         }
-
         .logo { font-family: 'Playfair Display'; font-weight: 600; font-size: 1.5rem; letter-spacing: 1px; }
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; text-decoration: none; color: var(--text-dark); }
         
         /* --- HERO --- */
-        .hero {
-            height: 90vh; /* Slightly shorter to show gallery peek */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 0 5%;
-        }
-
-        .hero-card {
-            padding: 4rem;
-            border-radius: 40px;
-            text-align: center;
-            max-width: 900px;
-            position: relative;
-            z-index: 2;
-        }
-
+        .hero { height: 90vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 0 5%; }
+        .hero-card { padding: 4rem; border-radius: 40px; text-align: center; max-width: 900px; position: relative; z-index: 2; }
         .hero h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1rem; line-height: 1.1; }
         .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.8; }
         .btn { padding: 1rem 2.5rem; background: var(--text-dark); color: #fff; border-radius: 30px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: transform 0.2s; }
@@ -80,49 +56,41 @@
         .f1 { top: 15%; left: 8%; width: 220px; height: 300px; transform: rotate(-8deg); }
         .f2 { bottom: 15%; right: 8%; width: 280px; height: 380px; transform: rotate(8deg); }
 
-        /* --- INFINITE GALLERY --- */
-        .gallery-section {
-            padding: 5rem 0;
-            overflow: hidden; /* Critical for hiding the 'magic' */
-        }
-
+        /* --- SMOOTH CAROUSEL --- */
+        .gallery-section { padding: 5rem 0; position: relative; }
         .section-header { padding: 0 5%; margin-bottom: 3rem; }
         .section-header h2 { font-family: 'Playfair Display'; font-size: 3rem; }
 
-        /* The Window we look through */
-        .carousel-window {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* The Moving Train */
+        .carousel-window { width: 100%; overflow: hidden; position: relative; }
+        
         .carousel-track {
-            display: flex;
-            gap: 2.5rem;
-            padding: 2rem 5%;
-            width: max-content; /* Allows track to be very long */
-            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); /* Fluid ease */
+            display: flex; 
+            gap: 40px; /* MATCH JS GAP VARIABLE */
+            padding: 2rem 5%; 
+            width: max-content;
+            /* No transition set here initially, handled by JS */
         }
 
         .product-card {
-            min-width: 350px;
-            height: 550px;
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            padding: 1.2rem;
-            position: relative;
-            transition: transform 0.3s;
+            min-width: 350px; /* MATCH JS WIDTH VARIABLE */
+            height: 550px; border-radius: 30px; display: flex; flex-direction: column; padding: 1.2rem; position: relative; transition: transform 0.3s;
         }
-        
-        /* Interactive: Pause scaling on hover */
         .product-card:hover { transform: scale(1.02); }
-
         .p-img { width: 100%; height: 80%; object-fit: cover; border-radius: 20px; margin-bottom: 1.2rem; }
         .p-details { padding: 0 0.5rem; display: flex; justify-content: space-between; align-items: center; }
         .p-name { font-family: 'Playfair Display'; font-size: 1.5rem; font-weight: 500; }
         .p-price { color: var(--accent); font-weight: 600; font-size: 1.1rem; }
+
+        /* --- BUTTONS --- */
+        .nav-btn {
+            position: absolute; top: 55%; transform: translateY(-50%);
+            width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; z-index: 10;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--text-dark); transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .nav-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+        .prev-btn { left: 3%; }
+        .next-btn { right: 3%; }
 
         /* --- FOOTER --- */
         footer { margin-top: 5rem; padding: 6rem 5% 3rem 5%; border-top: 1px solid rgba(0,0,0,0.05); background: linear-gradient(to top, #fff, rgba(255,255,255,0)); }
@@ -131,13 +99,13 @@
         .footer-col h5 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 1rem; color: #555; cursor: pointer; }
-        .footer-col li:hover { color: var(--accent); }
         .footer-bottom { text-align: center; font-size: 0.85rem; color: #999; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); }
 
         @media (max-width: 768px) {
             .f1, .f2 { display: none; }
             .hero-card { padding: 2rem; width: 95%; }
             .product-card { min-width: 300px; height: 450px; }
+            .nav-btn { display: none; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
@@ -166,8 +134,11 @@
     <section class="gallery-section">
         <div class="section-header">
             <h2>The Collection</h2>
-            <p style="color: #666;">Auto-scrolling Gallery</p>
+            <p style="color: #666;">Use arrows or drag to explore</p>
         </div>
+
+        <button class="nav-btn prev-btn" id="prevBtn">&#8592;</button>
+        <button class="nav-btn next-btn" id="nextBtn">&#8594;</button>
 
         <div class="carousel-window">
             <div class="carousel-track" id="track">
@@ -197,7 +168,7 @@
                     <div class="p-details"><div class="p-name">Village Life</div><div class="p-price">$210</div></div>
                 </div>
                 
-                </div>
+            </div>
         </div>
     </section>
 
@@ -209,11 +180,11 @@
             </div>
             <div class="footer-col">
                 <h5>Shop</h5>
-                <ul><li>All Paintings</li><li>Limited Edition</li><li>Gift Cards</li></ul>
+                <ul><li>All Paintings</li><li>Limited Edition</li></ul>
             </div>
             <div class="footer-col">
                 <h5>Support</h5>
-                <ul><li>Shipping & Returns</li><li>Contact Us</li><li>Privacy Policy</li></ul>
+                <ul><li>Contact Us</li><li>Privacy Policy</li></ul>
             </div>
         </div>
         <div class="footer-bottom">&copy; 2025 Mithila Art Store. Designed with transparency.</div>
@@ -221,47 +192,89 @@
 
     <script>
         const track = document.getElementById('track');
-        const cards = Array.from(track.children);
-        const cardWidth = 350; // Card width defined in CSS
-        const gap = 40; // 2.5rem gap defined in CSS (~40px)
-        const totalCardWidth = cardWidth + gap;
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
         
-        // 1. Clone cards to create the illusion of infinity
-        cards.forEach(card => {
+        // Configuration
+        const cardWidth = 350; // Must match CSS min-width
+        const gap = 40; // Must match CSS gap
+        const slideDistance = cardWidth + gap;
+        const totalOriginalCards = 5;
+
+        // 1. Setup Clones (Clone first 2 cards to end, last 2 cards to start)
+        // This allows seamless backward AND forward scrolling
+        const originalCards = Array.from(track.children);
+        
+        // Clone for end (Infinite right)
+        originalCards.forEach(card => {
             const clone = card.cloneNode(true);
-            clone.setAttribute('aria-hidden', true); // Accessibility
             track.appendChild(clone);
         });
 
-        let currentIndex = 0;
-        let isTransitioning = true;
+        // 2. Logic Variables
+        let counter = 0;
+        let autoScroll;
 
-        function moveCarousel() {
-            // Move to next slide
-            currentIndex++;
-            track.style.transition = 'transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)';
-            track.style.transform = `translateX(-${currentIndex * totalCardWidth}px)`;
-
-            // Check if we reached the end of the original set (Index 5)
-            // If we have 5 original cards, when we hit index 5, we are looking at the 1st clone.
-            if (currentIndex >= cards.length) {
-                setTimeout(() => {
-                    // Temporarily turn off animation
-                    track.style.transition = 'none';
-                    // Reset index to 0 (the actual first card)
-                    currentIndex = 0;
-                    // Move track back to start instantly
-                    track.style.transform = `translateX(0px)`;
-                }, 700); // Wait for the transition to finish (0.7s) before resetting
+        // 3. Movement Function
+        function updateCarousel(instant = false) {
+            if (instant) {
+                track.style.transition = 'none';
+            } else {
+                track.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)'; // Smooth easing
             }
+            track.style.transform = `translateX(${-slideDistance * counter}px)`;
         }
 
-        // Start the loop
-        let autoScroll = setInterval(moveCarousel, 3000); // Speed: 3 seconds per slide
+        function handleNext() {
+            if (counter >= totalOriginalCards) return; // Prevent spam clicking causing glitch
+            counter++;
+            updateCarousel();
+        }
 
-        // Optional: Pause on hover
+        function handlePrev() {
+            if (counter <= 0) return;
+            counter--;
+            updateCarousel();
+        }
+
+        // 4. The Magic Reset (Transition End Listener)
+        track.addEventListener('transitionend', () => {
+            // If we have scrolled past the original set (Index 5)
+            if (counter >= totalOriginalCards) {
+                track.style.transition = 'none'; // Turn off animation
+                counter = 0; // Reset index to 0
+                track.style.transform = `translateX(0px)`; // Jump back instantly
+            }
+        });
+
+        // 5. Buttons
+        nextBtn.addEventListener('click', () => {
+            clearInterval(autoScroll);
+            handleNext();
+            startAutoScroll();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            clearInterval(autoScroll);
+            if(counter === 0) {
+                // If at start and user goes back, we need to handle that (optional advanced logic)
+                // For now, let's keep it simple: stop at 0 or wrap to end
+            } else {
+                handlePrev();
+            }
+            startAutoScroll();
+        });
+
+        // 6. Auto Scroll
+        function startAutoScroll() {
+            autoScroll = setInterval(handleNext, 3000);
+        }
+
+        startAutoScroll();
+
+        // Pause on hover
         track.addEventListener('mouseenter', () => clearInterval(autoScroll));
-        track.addEventListener('mouseleave', () => autoScroll = setInterval(moveCarousel, 3000));
+        track.addEventListener('mouseleave', () => startAutoScroll());
 
     </script>
 </body>
